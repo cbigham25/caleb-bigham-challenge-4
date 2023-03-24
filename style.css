@@ -1,0 +1,208 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: sonorous;
+    src: url(assets/Sonorous.otf);
+}
+
+body {
+    background-color: rgb(220, 218, 221);
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: rgb(207, 162, 16);
+    filter: drop-shadow(0px 5px 10px rgb(65, 65, 65));
+    border-bottom: 1px rgb(131, 120, 109) solid;
+
+    font-family: sonorous;
+}
+
+.logo {
+
+    font-size: 24px;
+    color: rgb(230, 230, 230);
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.sub-logo {
+
+    color: rgb(230, 230, 230);
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    font-size: 12px;
+
+}
+
+.nav-links {
+    display: none;
+    justify-content: space-around;
+    width: 45%;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links div {
+    color: rgb(230, 230, 230);
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    text-shadow:
+        3px 3px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+    font-size: 12px;
+}
+
+
+
+.burger {
+    display: none;
+}
+
+.burger div {
+    width: 30px;
+    height: 6px;
+    background-color: rgb(230, 230, 230);
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px #000 solid;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width:1300px) {
+    .nav-links {
+
+        width: 50%;
+    }
+
+}
+
+@media screen and (max-width:1015px) {
+    nav {
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .nav-links {
+
+        width: 90%;
+        margin: 10px;
+    }
+
+
+    .logo {
+        min-width: 507px;
+        margin: 15px;
+    }
+
+}
+
+
+@media screen and (max-width:760px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .logo {
+        margin: 0px;
+    }
+
+    nav {
+        flex-direction: row;
+
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 93vh;
+        top: 7vh;
+        margin: 0px;
+        background-color: rgb(44, 37, 29);
+        margin-top: 12px;
+        border-left: 1px rgb(131, 120, 109) solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 65%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+    }
+
+    .nav-links li {
+        opacity: 0;
+    }
+
+
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+}
+
+.nav-active {
+    transform: translateX(0%);
+}
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+
+    }
+
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-13px, 3px);
+}
+
+.toggle .line2 {
+    opacity: 0;
+}
+
+.toggle .line3 {
+    transform: rotate(45deg) translate(-13px, -3px);
+
+}
+
+
+/* .burger div {
+    width: 30px;
+    height: 6px;
+    background-color: rgb(230, 230, 230);
+    margin: 5px;
+    border-radius: 3px;
+    border: 1px #000 solid;
+    transition: all 0.3s ease;
+} */

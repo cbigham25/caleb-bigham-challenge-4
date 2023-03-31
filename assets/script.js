@@ -1,3 +1,4 @@
+
 const blurbContent = document.querySelector('.blurb-content');
 const blurbContentContainer = document.querySelector('.blurb-content-container');
 const header = document.querySelector('header');
@@ -10,71 +11,196 @@ const container = document.querySelector(".main-content-container");
 const buttonContainer = container.querySelector(".buttonContainer");
 const startButton = buttonContainer.querySelector(".start-button");
 
-// Set the deadline for the countdown for the timer
-const deadline = new Date().getTime() + 2 * 60 * 1000;
-
-const fadeIn = () => {
-
-    //Animate blurb content
-    subLogo.style.transition = transitionProperty;
-    blurbContentContainer.style.transition = transitionProperty;
-    blurbContent.style.transition = transitionProperty;
-    buttonContainer.style.transition = transitionProperty;
-
-    subLogo.style.animation = `navLinkFade 0.5s ease forwards 1s`;
-    blurbContentContainer.style.animation = `navLinkFade 0.5s ease forwards 1.5s`;
-    blurbContent.style.animation = `navLinkFade 0.5s ease forwards 2s`;
-    buttonContainer.style.animation = `navLinkFade 0.5s ease forwards 2.5s`;
-}
-
-window.onload = function () {
-    fadeIn();
-}
 
 //remove start button and replace with answer buttons
 function replaceButton() {
 
-    const answerButtons = `
+    const questions = [
+        {
+            question: "What is JavaScript?",
+            choices: ["A type of coffee", "A programming language for the web", "A type of music", "A web browser"],
+            answer: "A programming language for the web",
+        },
+        {
+            question: "Which of the following is used to declare a variable in JavaScript?",
+            choices: ["let", "const", "var", "All of the above"],
+            answer: "All of the above",
+        },
+        {
+            question: "What is the difference between == and === in JavaScript?",
+            choices: ["They are the same thing", "== checks for type and value equality, while === checks for value equality only", "=== checks for type and value equality, while == checks for value equality only", "== checks for type and value equality, while === checks for type equality only"],
+            answer: "=== checks for type and value equality, while == checks for value equality only",
+        },
+        {
+            question: "Which of the following is used to declare a variable in JavaScript?",
+            choices: ["let", "const", "var", "All of the above"],
+            answer: "The process of defining variables and functions before they are used",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+        {
+            question: "",
+            choices: ["", "", "", ""],
+            answer: "",
+        },
+
+
+    ]
+
+
+
+    const answerButtonHTML = `
     <div class="answer-button">
-    <div class="option">A</div>
-    <div class="answer-content">They are the same thing</div>
-</div>
-
-<div class="answer-button">
-    <div class="option">B</div>
-    <div class="answer-content">map() returns a new array with the results of calling a function on each element, while forEach() does not return anything</div>
-</div>
-
-<div class="answer-button">
-    <div class="option">C</div>
-    <div class="answer-content"> forEach() returns a new array with the results of calling a function on each element, while map() does not return anything</div>
-</div>
-
-<div class="answer-button">
     <div class="option">D</div>
-    <div class="answer-content">None of the above</div>
-</div>
+    <div class="answer-content">A programming language for the web</div>
+  </div>
+    <div class="answer-button">
+    <div class="option">D</div>
+    <div class="answer-content">A web browser</div>
+  </div>
+    <div class="answer-button">
+    <div class="option">D</div>
+    <div class="answer-content">A web browser</div>
+  </div>
+    <div class="answer-button">
+    <div class="option">D</div>
+    <div class="answer-content">A web browser</div>
+  </div>
     `;
+
+
+    buttonContainer.innerHTML = answerButtonHTML;
+    const answerButtons = document.querySelectorAll('.answer-button');
+    const answerContent = document.querySelectorAll('.answer-content');
+
+
+
+    function answerClick() {
+        answerButtons.forEach((button, index) => {
+            button.addEventListener('click', event => {
+                if (questions[index].answer === answerContent[index].textContent) {
+                    // nextQuestion();
+                } else {
+                    console.log("incorrect answer selected");
+                    clearInterval(reduceTimer)
+
+                }
+            });
+        });
+    }
+    answerClick();
+
     buttonContainer.style.justifyContent = "space-between";
     buttonContainer.style.aligncontent = "space-between";
-    buttonContainer.innerHTML = answerButtons;
+    // blurbContent.innerHTML = `<p>${questionContent}</p>`;
 
-    if (document.querySelector('.HighScores')) {
-        nav.classList.toggle('nav-active');
-        //Animate Links
-        navLinks.forEach((link, index) => {
-            if (link.querySelector('.HighScores') && link.style.animation) {
-                link.style.animation = '';
-            } else if (link.querySelector('.HighScores')) {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`;
-            }
-        });
 
-    }
-
-    // Call the countdown function
-    countdown(deadline);
 }
+var timerCount = 0;
+var timerSeconds = 3;
+var timerMinutes = 1;
+var timerZero = "";
+
+
+var reduceTimer = () => {
+    timerSeconds--;
+    if (timerSeconds < 10) { timerZero = "0" } else { timerZero = "" };
+    if (timerSeconds === 0) { timerMinutes--, timerCount++ };
+    if (timerMinutes === 0) { timerSeconds = 3, timerMinutes = "0" };
+
+    $("#timer").text(`${timerMinutes}:${timerZero}${timerSeconds}`);
+}
+if (timerCount === 2) { $("#timer").text(`TIME'S UP`); }
+
+$(".start-button").on("click", function () { setInterval(reduceTimer, 1000); });
 
 const navSlide = () => {
 
@@ -100,22 +226,22 @@ const navSlide = () => {
 
 navSlide();
 
-const countdown = (deadline) => {
-    const timer = setInterval(() => {
-        const now = new Date().getTime();
-        const timeRemaining = deadline - now;
+const fadeIn = () => {
 
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+    //Animate blurb content
+    subLogo.style.transition = transitionProperty;
+    blurbContentContainer.style.transition = transitionProperty;
+    blurbContent.style.transition = transitionProperty;
+    buttonContainer.style.transition = transitionProperty;
 
-        document.getElementById('minutes').innerHTML = ('0' + minutes).slice(-2);
-        document.getElementById('seconds').innerHTML = ('0' + seconds).slice(-2);
+    subLogo.style.animation = `navLinkFade 0.5s ease forwards 1s`;
+    blurbContentContainer.style.animation = `navLinkFade 0.5s ease forwards 1.5s`;
+    blurbContent.style.animation = `navLinkFade 0.5s ease forwards 2s`;
+    buttonContainer.style.animation = `navLinkFade 0.5s ease forwards 2.5s`;
+}
 
-        if (timeRemaining < 0) {
-            clearInterval(timer);
-            document.getElementById('timer').innerHTML = "TIME'S UP!";
-        }
-    }, 1000);
+window.onload = function () {
+    fadeIn();
 }
 
 

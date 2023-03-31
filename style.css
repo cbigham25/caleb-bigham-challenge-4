@@ -17,8 +17,7 @@ body {
 p {
     font-family: 'Trebuchet MS', sans-serif;
     color: rgb(42, 42, 42);
-    font-size: 42px;
-    letter-spacing: 5px;
+    font-size: 24px;
     margin: 0px;
 
 }
@@ -169,8 +168,6 @@ nav {
 .blurb-content {
     display: flex;
     flex-direction: column;
-    line-height: 45px;
-    font-size: 48px;
     margin: 35px;
     margin-top: 10px;
     height: 30vh;
@@ -179,7 +176,7 @@ nav {
     transition: opacity 0.5s ease-in;
     opacity: 0;
     color: black;
-    font-size: 34px;
+    font-size: 24px;
 
 }
 
@@ -225,16 +222,12 @@ nav {
 .answer-button {
     display: flex;
     align-items: center;
-    background-color: #05668d;
     width: 49%;
     height: 45%;
     margin: 5px;
-    border: 5px solid rgb(71, 71, 71);
-    border-radius: 40px;
     font-size: 24px;
+    border-radius: 10px;
     color: rgb(230, 230, 230);
-    letter-spacing: 10px;
-    box-shadow: inset 0 0 15px rgb(71, 71, 71);
     text-shadow:
         3px 3px 0 #000,
         -1px -1px 0 #000,
@@ -244,7 +237,26 @@ nav {
     text-transform: uppercase;
     font-family: sonorous;
     transition: transform 0.2s ease-in-out;
+
 }
+
+.option {
+    font-size: 42px;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.answer-content {
+    font-size: 42px;
+    margin-right: 10px;
+    color: black;
+    font-size: 24px;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: rgb(42, 42, 42);
+    text-shadow: none;
+    text-transform: none;
+}
+
 
 .start-button:hover {
     transform: scale(1.1);
@@ -252,6 +264,8 @@ nav {
 
 .answer-button:hover {
     transform: scale(1.1);
+    background: linear-gradient(to bottom, transparent, rgba(244, 244, 244, 0.25));
+
 }
 
 #timer {

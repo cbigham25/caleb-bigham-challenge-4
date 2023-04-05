@@ -1,5 +1,7 @@
 
 const blurbContent = document.querySelector('.blurb-content');
+const removeP = document.querySelector('#removeMe');
+const replaceP = document.querySelector('#replaceMe');
 const blurbContentContainer = document.querySelector('.blurb-content-container');
 const header = document.querySelector('header');
 const nav = document.querySelector('.nav-links');
@@ -10,10 +12,13 @@ const transitionProperty = `opacity 0.5s ease-in`;
 const container = document.querySelector(".main-content-container");
 const buttonContainer = container.querySelector(".buttonContainer");
 const startButton = buttonContainer.querySelector(".start-button");
-
+const timer = document.querySelector("#timer");
+let questionIndex = 0;
 
 //remove start button and replace with answer buttons
 function replaceButton() {
+
+
 
     const questions = [
         {
@@ -35,119 +40,23 @@ function replaceButton() {
             question: "Which of the following is used to declare a variable in JavaScript?",
             choices: ["let", "const", "var", "All of the above"],
             answer: "The process of defining variables and functions before they are used",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-        {
-            question: "",
-            choices: ["", "", "", ""],
-            answer: "",
-        },
-
-
+        }
     ]
 
-
+    removeP.textContent = "";
+    replaceP.textContent = `<p>${questions[questionIndex].question}</p>`;
 
     const answerButtonHTML = `
     <div class="answer-button">
-    <div class="option">D</div>
+    <div class="option">A</div>
     <div class="answer-content">A programming language for the web</div>
   </div>
     <div class="answer-button">
-    <div class="option">D</div>
+    <div class="option">B</div>
     <div class="answer-content">A web browser</div>
   </div>
     <div class="answer-button">
-    <div class="option">D</div>
+    <div class="option">C</div>
     <div class="answer-content">A web browser</div>
   </div>
     <div class="answer-button">
@@ -167,12 +76,20 @@ function replaceButton() {
         answerButtons.forEach((button, index) => {
             button.addEventListener('click', event => {
                 if (questions[index].answer === answerContent[index].textContent) {
-                    // nextQuestion();
+                    // score++;
+                    questionIndex++;
+                    replaceP.textContent = `<p>${questions[questionIndex].question}</p>`;
+
                 } else {
                     console.log("incorrect answer selected");
-                    clearInterval(reduceTimer)
+
+                    if (secondsLeft > 0) {
+                        secondsLeft -= 10;
+                    }
 
                 }
+
+
             });
         });
     }
@@ -180,27 +97,31 @@ function replaceButton() {
 
     buttonContainer.style.justifyContent = "space-between";
     buttonContainer.style.aligncontent = "space-between";
-    // blurbContent.innerHTML = `<p>${questionContent}</p>`;
+
+
+
+};
+
+$(".start-button").on("click", setTime);
+var secondsLeft = 60;
+
+
+function setTime() {
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        timer.textContent = secondsLeft + " seconds left";
+
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            timer.textContent = "Time's up!";
+
+        }
+
+    }, 1000);
 
 
 }
-var timerCount = 0;
-var timerSeconds = 3;
-var timerMinutes = 1;
-var timerZero = "";
 
-
-var reduceTimer = () => {
-    timerSeconds--;
-    if (timerSeconds < 10) { timerZero = "0" } else { timerZero = "" };
-    if (timerSeconds === 0) { timerMinutes--, timerCount++ };
-    if (timerMinutes === 0) { timerSeconds = 3, timerMinutes = "0" };
-
-    $("#timer").text(`${timerMinutes}:${timerZero}${timerSeconds}`);
-}
-if (timerCount === 2) { $("#timer").text(`TIME'S UP`); }
-
-$(".start-button").on("click", function () { setInterval(reduceTimer, 1000); });
 
 const navSlide = () => {
 
@@ -245,3 +166,4 @@ window.onload = function () {
 }
 
 
+console.log(removeP.textContent + " " + replaceP.textContent)
